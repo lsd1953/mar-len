@@ -5,9 +5,9 @@ from django.urls import include, path
 
 from backend.core.views.index_view import index_view
 
-admin.site.site_header = 'Marlen'
-admin.site.site_title = 'Marlen Backend'
-admin.site.index_title = 'Marlen Backend'
+admin.site.site_header = 'Mar-len'
+admin.site.site_title = 'Mar-len Backend'
+admin.site.index_title = 'Mar-len Backend'
 
 
 

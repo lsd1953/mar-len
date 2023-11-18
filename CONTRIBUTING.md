@@ -2,7 +2,7 @@
 
 ## Antes de Contribuir
 
-Bem vindo ao [Marlen](https://github.com/cbti-rj-org/marlen)! Antes de enviar seus pull requests, leia todo nosso **guia de contribuição**. Se você tiver qualquer dúvida sobre esse guia, fique a vontade para faze-la no nosso [issue](https://github.com/cbti-rj-org/marlen/issues/new).
+Bem vindo ao [Mar-len](https://github.com/cbti-rj-org/marlen)! Antes de enviar seus pull requests, leia todo nosso **guia de contribuição**. Se você tiver qualquer dúvida sobre esse guia, fique a vontade para faze-la no nosso [issue](https://github.com/cbti-rj-org/marlen/issues/new).
 
 ### Contribuição
 
@@ -14,7 +14,7 @@ Quando você estiver enviando alguma correção de um problema listado na area d
 
 ### Contribuidor
 
-Agradecemos que você considere contribuir para o [Marlen](https://github.com/cbti-rj-org/marlen)! Nosso objetivo é facilitar a comunicação das organizações marxistas-leninistas. Sendo um de nossos colaboradores, você concorda e confirma que:
+Agradecemos que você considere contribuir para o [Mar-len](https://github.com/cbti-rj-org/marlen)! Nosso objetivo é facilitar a comunicação das organizações marxistas-leninistas. Sendo um de nossos colaboradores, você concorda e confirma que:
 
 - Seu trabalho será distribuído sob a [MIT License](LICENSE.md) assim que seu pull request for mesclado.
 

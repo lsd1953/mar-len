@@ -1,7 +1,7 @@
-Marlen
+Mar-len
 ==========
 
-**Marlen**  é uma aplicação feita em Python 3.10 que serve para gerenciar organizações marxistas-leninistas.
+**Mar-len**  é uma aplicação feita em Python 3.10 que serve para gerenciar organizações marxistas-leninistas.
 
 ## Instaladores
 
