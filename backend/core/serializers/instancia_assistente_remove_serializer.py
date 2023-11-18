@@ -1,0 +1,48 @@
+import re
+from django.contrib.auth import get_user_model  # If used custom user model
+from rest_framework import serializers
+from backend.core.models import Militantes, Instancias, Assistentes
+
+
+
+
+class InstanciaAssistenteRemoveSerializer(serializers.Serializer):
+    instancia = serializers.IntegerField()
+    assistente = serializers.CharField()
+
+
+        
+    def validate_instancia(self, value):
+        if not Instancias.objects.filter(id=value).exists():
+            raise serializers.ValidationError(
+                'Não existe a instancia informada.'
+            )
+
+        return value
+    
+    def validate_assistente(self, value):
+        if not Militantes.objects.filter(id=value).exists():
+            raise serializers.ValidationError(
+                'Não existe o militante informado como assistente.'
+            )
+
+        return value
+    
+    def validate(self, data):
+        if not Assistentes.objects.filter(militante=data['assistente'],instancia=data['instancia']).exists():
+            raise serializers.ValidationError(
+                'Esse militante não é assistente nessa instancia.'
+            )
+
+        return data
+
+        
+    def create(self, validated_data):
+        assistencia = Assistentes.objects.get(militante=validated_data['assistente'],instancia=validated_data['instancia'])
+        assistencia.delete()
+
+        return {
+                'assistente': validated_data['assistente'],
+                'instancia': validated_data['instancia'],
+        }
+

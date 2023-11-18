@@ -1,0 +1,48 @@
+{% extends "base/logado.html" %}
+
+{% load static %}
+
+{% block css %}
+   
+{% endblock %}
+
+{% block container %}
+
+<div class="text-center">
+    <div class="row">
+        <div class="col">
+            <h1>{{ instancia.organizacao.nome }}</h1>
+        </div>
+    </div>
+    <hr />
+     <div class="row">
+        <div class="col">
+            <h2>Funções</h2>
+            <a href="{% url 'core:cadastro_funcao_view' instancia.slug %}" class="btn btn-success">Cadastrar</a>
+            <a href="{% url 'core:remove_funcao_view' instancia.slug %}" class="btn btn-danger">Apagar</a>
+            <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for funcao in funcoes %}
+                        <tr>
+                                <td scope="row">{{ funcao.nome }}</td>
+                      </tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+    <hr />
+    <div class="row align-items-start">
+        <div class="col">
+            <a href="{% url 'core:instancia_view' instancia.slug %}" class="btn btn-primary">Voltar</a>
+        </div>
+    </div>
+ </div>
+
+{% endblock %}

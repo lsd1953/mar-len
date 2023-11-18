@@ -1,0 +1,126 @@
+{% extends "base/logado.html" %}
+
+{% load static %}
+
+{% block css %}
+   
+{% endblock %}
+
+{% block container %}
+
+<div >
+    <div class="row align-items-start">
+        <div class="col">
+            <h2>Minhas Informações</h2>
+            <form method="post"  action="{% url 'core:atualiza_dados_view' %}">
+            {% csrf_token %}
+            <fieldset class="border p-2">
+                <legend>Dados Pessoais</legend>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.apelido.name }}">{{ form.apelido.label }}</label>
+                            <input class="form-control" name="{{ form.apelido.name }}" id="{{ form.apelido.id_for_label  }}" value="{{ informacoes.apelido }}" required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.nome.name }}">{{ form.nome.label }}</label>
+                            <input class="form-control" name="{{ form.nome.name }}" id="{{ form.nome.id_for_label  }}" value="{{ informacoes.nome }}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.email.name }}">{{ form.email.label }}</label>
+                            <input class="form-control" type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label  }}" value="{{ informacoes.email }}" >
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.telefone.name }}">{{ form.telefone.label }}</label>
+                            <input class="form-control" type="tel" name="{{ form.telefone.name }}" id="{{ form.telefone.id_for_label  }}" value="{{ informacoes.telefone }}" >
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.estado.name }}">{{ form.estado.label }}</label>
+                            <input class="form-control" name="{{ form.estado.name }}" id="{{ form.estado.id_for_label  }}" value="{{ informacoes.estado }}" required autofocus>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.pais.name }}">{{ form.pais.label }}</label>
+                            <input class="form-control" name="{{ form.pais.name }}" id="{{ form.pais.id_for_label  }}" value="{{ informacoes.pais }}" required autofocus>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="border p-2">
+                <legend>Dados do Trabalho</legend>                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.salario.name }}">{{ form.salario.label }}</label>
+                            <input class="form-control" name="{{ form.salario.name }}" id="{{ form.salario.id_for_label  }}" value="{{ informacoes.salario }}" required autofocus>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.profissao.name }}">{{ form.profissao.label }}</label>
+                            <input class="form-control" name="{{ form.profissao.name }}" id="{{ form.profissao.id_for_label  }}" value="{{ informacoes.profissao }}" required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.vinculo_trabalhista.name }}">{{ form.vinculo_trabalhista.label }}</label>
+                            <input class="form-control" name="{{ form.vinculo_trabalhista.name }}" id="{{ form.vinculo_trabalhista.id_for_label  }}" value="{{ informacoes.vinculo_trabalhista }}" required autofocus>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.sindicato.name }}">{{ form.sindicato.label }}</label>
+                            <input class="form-control" name="{{ form.sindicato.name }}" id="{{ form.sindicato.id_for_label  }}" value="{{ informacoes.sindicato }}" required autofocus>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="border p-2">
+                <legend>Dados da Empresa onde Trabalha</legend>  
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.onde_trabalha.name }}">{{ form.onde_trabalha.label }}</label>
+                            <input class="form-control" name="{{ form.onde_trabalha.name }}" id="{{ form.onde_trabalha.id_for_label  }}" value="{{ informacoes.onde_trabalha }}" required autofocus>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.estado_onde_trabalha.name }}">{{ form.estado_onde_trabalha.label }}</label>
+                            <input class="form-control" name="{{ form.estado_onde_trabalha.name }}" id="{{ form.estado_onde_trabalha.id_for_label  }}" value="{{ informacoes.estado_onde_trabalha }}" required autofocus>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="{{ form.pais_onde_trabalha.name }}">{{ form.pais_onde_trabalha.label }}</label>
+                            <input class="form-control" name="{{ form.pais_onde_trabalha.name }}" id="{{ form.pais_onde_trabalha.id_for_label  }}" value="{{ informacoes.pais_onde_trabalha }}" required autofocus>
+                        </div>
+                    </div>
+                </div>
+        </fieldset>
+            <button type="submit" class="btn btn-primary">Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

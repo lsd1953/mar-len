@@ -1,0 +1,24 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}" media="screen" />
+{% endblock %}
+
+{% block container %}
+
+<div class="text-center">
+    <div class="row align-items-start">
+        <div class="col">
+            <h2>Primeiro Acesso</h2>
+            <form method="post"  action="{% url 'core:primeiro_acesso_view' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Log In</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base/logado.html" %}
+
+{% load static %}
+
+{% block css %}
+   
+{% endblock %}
+
+{% block container %}
+
+<div >
+    <div class="row align-items-start">
+        <div class="col">
+            <h2>Novo Militante</h2>
+            <form method="post"  action="{% url 'core:cadastro_view' instancia.slug %}">
+                {% csrf_token %}
+                <fieldset class="border p-2">
+                    <legend>Dados</legend>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="{{ form.apelido.name }}">{{ form.apelido.label }}</label>
+                                <input class="form-control" name="{{ form.apelido.name }}" id="{{ form.apelido.id_for_label  }}" required autofocus>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="{{ form.email.name }}">{{ form.email.label }}</label>
+                                <input class="form-control" name="{{ form.email.name }}" id="{{ form.email.id_for_label  }}" required>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Cadastro</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

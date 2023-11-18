@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'core/css/index.css' %}" media="screen" />
+{% endblock %}
+
+{% block container %}
+
+<div class="text-center">
+    <div class="row align-items-start">
+        <div class="col">
+            <img  src="{% static 'base/imgs/logo.png' %}" alt="logo da aplicação"  class="img-fluid">
+            <h1>Marlen - Organização.</h1>
+            <blockquote>
+                <p>"O proletariado tem como única arma, na sua luta pelo poder, a organização."</p>
+            </blockquote>
+            <p>Acesse e gerencia suas organizações</p>
+            <a class="btn btn-primary" href="{% url 'core:login_view' %}" role="button">Login</a>
+            <a class="btn btn-success" href="{% url 'core:primeiro_acesso_view' %}" role="button">Primeiro Acesso</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

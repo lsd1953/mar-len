@@ -1,0 +1,33 @@
+{% extends "base/logado.html" %}
+
+{% load static %}
+
+{% block css %}
+   
+{% endblock %}
+
+{% block container %}
+
+
+<div class="row align-items-start">
+    <div class="col">
+        <h2>Apagar Função</h2>
+        <form method="post"  action="{% url 'core:remove_funcao_view' instancia.slug %}">
+            {% csrf_token %}
+            <fieldset class="border p-2">
+                <legend>Dados</legend>
+                {{ form.as_p }}
+            </fieldset>
+            <button type="submit" class="btn btn-danger">Apagar</button>
+        </form>
+    </div>
+</div>
+
+<div class="row align-items-start">
+    <div class="col">
+        <a href="{% url 'core:funcao_view' instancia.slug %}" class="btn btn-primary">Voltar</a>
+    </div>
+</div>
+
+
+{% endblock %}

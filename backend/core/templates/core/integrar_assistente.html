@@ -1,0 +1,27 @@
+{% extends "base/logado.html" %}
+
+{% load static %}
+
+{% block css %}
+   
+{% endblock %}
+
+{% block container %}
+
+<div >
+    <div class="row align-items-start">
+        <div class="col">
+            <h2>Integrar Novo Assistente</h2>
+            <form method="post"  action="{% url 'core:integrar_assistente_view' superior.slug inferior.slug %}">
+                {% csrf_token %}
+                <fieldset class="border p-2">
+                    <legend>Dados</legend>
+                    {{ form.as_p }}
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Integrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

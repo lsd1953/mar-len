@@ -1,0 +1,44 @@
+{% extends "base/base.html" %}
+
+{% load l10n %}
+{% load static %}
+{% block css_logado %}
+    <link rel="stylesheet" href="{% static 'base/css/logado.css' %}" media="screen" />
+{% endblock %}
+
+{% block menu %}
+<i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+<header id="header">
+    <div class="d-flex flex-column">
+
+      <div class="profile">
+        <img id="imageUser" src="{% static 'base/imgs/logo.png' %}"alt="logo da aplicação" class="img-fluid rounded-circle">
+        <h1 class="text-light"><a href="{% url 'core:dashboard_view' %}">{{ militante.apelido }}</a></h1>
+        {%if secretario %}
+            <p class="text-light">Secretário</p>
+        {%endif%}
+        {%if administrador %}
+            <p class="text-light">Administrador</p>
+        {%endif%}
+        
+        <button style="width:270px;margin-bottom:5px" onclick="copiarTexto('{{ militante.codigo_unico }}')" class="btn btn-warning">Código Unico</button>
+        {%if contribuicoes %}
+        <ul class="list-group">
+        <li class="list-group-item"><p>Contribuições</p></li>
+          {%for contribuicao in contribuicoes %}
+                <li class="list-group-item text-center">{{ contribuicao.nome}}: R$ {{ contribuicao.valor | floatformat:2}}</li>
+          {%endfor%}
+        </ul>
+        {%endif%}
+      </div>
+
+      <nav id="navbar" class="nav-menu navbar">
+        <ul>
+          <li><a href="{% url 'core:dashboard_view' %}" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Dashboard</span></a></li>
+          <li><a href="{% url 'core:atualiza_dados_view' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Meus Dados</span></a></li>
+          <li><a href="{% url 'core:sair_view' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Sair</span></a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header>
+  {% endblock %}

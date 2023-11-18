@@ -1,0 +1,224 @@
+{% extends "base/logado.html" %}
+
+{% load static %}
+
+{% block css %}
+   
+{% endblock %}
+
+{% block container %}
+
+<div class="text-center">
+    <div class="row">
+        <div class="col">
+            <h1>{{ instancia.organizacao.nome }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>{{ instancia.nome }}</h2>
+        </div>
+    </div>
+    <hr />
+    {%if instancia.tipo == 2 and administrador == True %}
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h2>Ações Nacionais</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="cards_area">
+                        <div class="card" style="width: 18rem; margin: 5px;">
+                            <img class="card-img-top" src="{% static 'base/imgs/militante.png' %}"  alt="Instancia {{ instancia.nome }}">
+                            <div class="card-body">
+                                <h5 class="card-title">Funções</h5>
+                                <div class="row">
+                                    <a href="{% url 'core:funcao_view' instancia.slug %}" class="btn btn-primary">Visualizar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    {%endif%}
+    <div class="row">
+        <div class="col">
+            <h2>Secretariado</h2>
+            <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Descricão</th>
+                    <th scope="col">Apelido</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for secretario in secretariado %}
+                        <tr>
+                            <th scope="row">{{ secretario.funcao.nome| slice:"0:20" }}</th>
+                            <th scope="row">{{ secretario.militante.apelido| slice:"0:20" }}</th>
+                          </tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <hr />
+    
+    {%if cadastra == True or administrador == True %}
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <h2>Ações</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="cards_area">
+                        <div class="card" style="width: 18rem; margin: 5px;">
+                            <img class="card-img-top" src="{% static 'base/imgs/militante.png' %}"  alt="Instancia {{ instancia.nome }}">
+                            <div class="card-body">
+                                <h5 class="card-title">Militante</h5>
+                                <div class="row">
+                                    {%if instancia.tipo == 0 %}
+                                        <div class="col">
+                                            <div class="row">
+                                                <a href="{% url 'core:cadastro_view' instancia.slug %}" class="btn btn-success">Cadastrar</a>
+                                            </div>
+                                        </div>
+                                    {%endif%}
+                                    <div class="col">
+                                        <div class="row">
+                                            <a href="{% url 'core:remover_militante_view' instancia.slug %}" class="btn btn-danger">Remover</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="row">
+                                            <a href="{% url 'core:integrar_militante_view' instancia.slug %}" class="btn btn-primary">Integrar</a>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="row">
+                                            <a href="{% url 'core:definir_funcao_view' instancia.slug %}" class="btn btn-warning">Funcao</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%if cadastra == True %}
+                        <div class="card" style="width: 18rem; margin: 5px;">
+                            <img class="card-img-top" src="{% static 'base/imgs/instancia.png' %}"  alt="Instancia {{ instancia.nome }}">
+                            <div class="card-body">
+                            <h5 class="card-title">Atividade</h5>
+                                <div class="row">
+                                    <a href="{{ instancia.get_absolute_url }}"class="btn btn-success">Cadastrar</a>
+                                </div>
+                            </div>
+                        </div>
+                        {%endif%}
+                        {%if instancia.tipo != 0 and instancia.tipo != 3 %}
+                            <div class="card" style="width: 18rem; margin: 5px;">
+                                <img class="card-img-top" src="{% static 'base/imgs/instancia.png' %}"  alt="Instancia {{ instancia.nome }}">
+                                <div class="card-body">
+                                <h5 class="card-title">Instancias</h5>
+                                <div class="row">
+                                    <a href="{% url 'core:cadastrar_instancia_view' instancia.slug %}"class="btn btn-success">Cadastrar</a>
+                                </div>
+                                </div>
+                            </div>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    {%endif%}
+
+    
+    <div class="row">
+        <div class="col">
+            <h2>Militantes</h2>
+            <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Apelido</th>
+                    {%if secretario or administrador == True%}
+                        {%if cadastra == True%}
+                            <th scope="col">Email</th>
+
+                            <th scope="col">Telefone</th>
+                        {%endif%}
+                        {%if cadastra == True or administrador == True %}
+                            <th scope="col">Código Unico</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        {%endif%}
+                    {%endif%}
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for militante in militantes %}
+                        <tr>
+                        <th scope="row">{{ militante.apelido| slice:"0:20" }}</th>
+                        {%if secretario or administrador == True%}
+                            {%if cadastra == True%}
+                                <td>{{ militante.email| slice:"0:50" }}</td>
+                                <td>{{ militante.telefone| slice:"0:50" }}</td>
+                            {%endif%}
+                            {%if cadastra == True or administrador == True %}
+                                <td><button onclick="copiarTexto('{{ militante.codigo_unico }}')" class="btn btn-warning">Copiar</button></td>
+                                <td></td>
+                                <td></td>
+                            {%endif%}
+                        {%endif%}
+                      </tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+
+        </div>
+    </div>
+    <hr />
+    {%if instancia.tipo != 0 %}
+    <div class="row">
+        <div class="col">
+            <h2>Instancias Inferiores</h2>
+            <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Nome</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for inferiores in instancias_inferiores %}
+                        <tr>
+                            <th scope="row">{{ inferiores.nome }}</th>
+                            <th scope="row">
+                                {%if cadastra == True or administrador == True %}
+                                    <a href="{% url 'core:integrar_assistente_view' instancia.slug inferiores.slug %}" class="btn btn-primary">Definir Assistente</a>
+                                {%endif%}
+                                {%if cadastra == True or administrador == True %}
+                                    <a href="{% url 'core:remover_assistente_view' instancia.slug inferiores.slug %}" class="btn btn-danger">Remover Assistente</a>
+                                {%endif%}
+                            </th>
+                          </tr>
+                    {%endfor%}
+                </tbody>
+              </table>
+        </div>
+    </div>
+    <hr />
+    {%endif%}
+</div>
+
+{% endblock %}
